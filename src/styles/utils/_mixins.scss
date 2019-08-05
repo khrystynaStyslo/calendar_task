@@ -1,6 +1,16 @@
-@mixin hover($_property, $_toValue) {
-  transition: #{$_property} 0.3s;
-  &:hover {
-    #{$_property}: $_toValue;
+@mixin initial_day() {
+  @each $day in $days-list {
+    $i: index($days-list, $day);
+    .calendar-#{$day} div:first-child {
+      grid-column-start: #{$i};
+    }
+  }
+}
+
+@mixin amount_of_days() {
+  @for $i from 28 through 30 {
+    .calendar-#{$i} div:nth-child(#{$i}) ~ div {
+      display: none;
+    }
   }
 }

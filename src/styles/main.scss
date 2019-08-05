@@ -1,7 +1,42 @@
 @import "utils";
-@import "fonts";
-@import "typography";
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  background: $c-gray;
+  display: flex;
+  justify-content: center;
 }
+
+.calendar {
+  margin: 30px auto;
+  display: grid;
+  grid-template: repeat(6, $size) / repeat(7, $size);
+  grid-gap: 1px;
+  color: #000;
+  counter-reset: days;
+
+  div {
+    background: $bg-color;
+    display: flex;
+    border: 1px solid #000;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s linear;
+    font: 30px Arial, sans-serif;
+    cursor: pointer;
+    counter-increment: days;
+    &:hover {
+      cursor: pointer;
+      background-color: $hover-color;
+      transform: translateY(-20px);
+    }
+    &::after {
+      content: counter(days);
+    }
+  }
+}
+
+@include initial_day;
+@include amount_of_days;
